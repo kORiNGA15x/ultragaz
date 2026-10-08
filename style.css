@@ -648,25 +648,6 @@ body { padding-bottom: 4.5rem; }
    NOVAS OFERTAS — "Compre 3" e Programa de Fidelidade
    ========================================================== */
 
-/* ---------- Oferta: compre 3 gás ---------- */
-.promo {
-  display: grid; gap: 1.25rem; margin-top: 1rem; padding: 1.5rem 1.25rem;
-  background: var(--blue-dark); color: var(--white);
-  border-radius: 16px; border-bottom: 5px solid var(--yellow);
-}
-.promo-title { font-size: 1.4rem; font-weight: 900; line-height: 1.15; letter-spacing: -.01em; }
-.promo-text { margin-top: .6rem; color: #cfdcf7; font-size: 1.05rem; }
-.promo .btn-primary { margin-top: 1.25rem; font-size: 1.05rem; }
-.promo-price {
-  padding: 1rem 1.1rem; border-radius: var(--radius);
-  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16);
-}
-.promo-was { font-size: .95rem; color: #cfdcf7; }
-.promo-was del { margin-left: .25rem; text-decoration-thickness: 2px; }
-.promo-now { margin-top: .15rem; font-size: 3rem; font-weight: 900; line-height: 1; letter-spacing: -.03em; color: var(--yellow); }
-.promo-now span { font-size: 1.15rem; font-weight: 700; letter-spacing: 0; color: var(--white); }
-.promo-total { margin-top: .5rem; font-weight: 700; }
-
 /* ---------- Programa de fidelidade ---------- */
 .loyalty { padding-block: 2.5rem; background: var(--white); border-top: 1px solid var(--line); }
 .loyalty h2 { font-size: 1.6rem; font-weight: 800; line-height: 1.15; letter-spacing: -.01em; color: var(--blue-dark); }
@@ -683,8 +664,6 @@ body { padding-bottom: 4.5rem; }
 .loyalty .btn-secondary { margin-top: 1.25rem; width: 100%; max-width: 420px; }
 
 @media (min-width: 640px) {
-  .promo { grid-template-columns: 1.4fr 1fr; align-items: center; gap: 2rem; padding: 2rem; }
-  .promo-title { font-size: 1.75rem; }
   .loyalty { padding-block: 3.5rem; }
   .loyalty-flow { grid-template-columns: 1fr 1fr; gap: 1rem; }
 }
@@ -778,4 +757,121 @@ body { padding-bottom: 4.5rem; }
 }
 @media (min-width: 900px) {
   .order-inner { grid-template-columns: .85fr 1.15fr; gap: 3.5rem; align-items: start; }
+}
+
+/* ==========================================================
+   GRADIENTES SUTIS — mesmas cores do site, só com profundidade
+   ========================================================== */
+.hero {
+  background:
+    radial-gradient(ellipse 70% 60% at 85% 0%, rgba(80,130,230,.22), transparent 60%),
+    linear-gradient(145deg, #0b3a8f 0%, #072a69 55%, #051f52 100%);
+  position: relative;
+}
+.hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: linear-gradient(90deg, transparent, rgba(255,201,60,.75), transparent); }
+.hero-extra { background: linear-gradient(90deg, rgba(255,255,255,.16), rgba(255,255,255,.04)); }
+
+.btn-primary { background: linear-gradient(180deg, #0f8f47 0%, #0a7236 100%); }
+.btn-primary:hover { background: linear-gradient(180deg, #0c7d3d 0%, #086230 100%); }
+.btn-secondary, .btn-header.btn-secondary { background: linear-gradient(180deg, #0e44a6 0%, #0b3a8f 100%); }
+.btn-secondary:hover { background: linear-gradient(180deg, #0b3a8f 0%, #072a69 100%); }
+.btn-header { background: linear-gradient(180deg, #0f8f47 0%, #0a7236 100%); }
+.btn-header:hover { background: linear-gradient(180deg, #0c7d3d 0%, #086230 100%); }
+.whats-float { background: linear-gradient(180deg, #0f8f47 0%, #0a7236 100%); }
+
+.offer-card-main { background: linear-gradient(180deg, #ffffff 0%, #f1f6ff 100%); }
+.offer-card-secondary { background: linear-gradient(180deg, #f9fafd 0%, #edf1f9 100%); }
+.notice { background: linear-gradient(90deg, #fff1cc 0%, #fff9e8 100%); }
+
+.steps, .loyalty, .products, .areas, .store { position: relative; }
+.steps::before, .loyalty::before, .products::before, .areas::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, #c3cfe6 50%, transparent); }
+.steps { background: linear-gradient(180deg, #ffffff, #f6f9fe); }
+.loyalty { background: linear-gradient(180deg, #f6f9fe, #ffffff); border-top: 0; }
+.areas { background: linear-gradient(180deg, #f0f4fb, #e8eefa); }
+.step, .area, .loyalty-step { background: linear-gradient(180deg, #ffffff, #f7f9fe); }
+.loyalty-step-free { background: linear-gradient(180deg, #f1f6ff, #e3edff); }
+.order { background: radial-gradient(ellipse 60% 50% at 0% 0%, rgba(80,130,230,.2), transparent 60%), linear-gradient(160deg, #0a3484 0%, #072a69 60%, #051f52 100%); }
+.summary { background: linear-gradient(180deg, #f8faff, #eff3fb); }
+.final-cta { background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(80,130,230,.2), transparent 65%), linear-gradient(160deg, #0a3484, #072a69 60%, #051f52); }
+.site-footer { background: linear-gradient(180deg, #061f4d, #041438); }
+
+/* ==========================================================
+   ALÉM DO GÁS — pequena loja
+   ========================================================== */
+.products { padding-block: 2.5rem; background: linear-gradient(180deg, #ffffff, #f4f7fd); }
+.products-head h2 { font-size: 1.6rem; font-weight: 800; line-height: 1.15; letter-spacing: -.01em; color: var(--blue-dark); }
+.products-kicker { margin-top: .6rem; font-size: 1.1rem; font-weight: 700; color: var(--blue); }
+.products-text { margin-top: .4rem; max-width: 58ch; color: var(--muted); }
+.products-grid { display: grid; gap: 1.25rem; margin-top: 1.5rem; }
+
+.product { display: flex; flex-direction: column; overflow: hidden; background: var(--white); border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 2px 10px rgba(7,42,105,.06); transition: transform .25s ease, box-shadow .25s ease; }
+.product-media { margin: 0; background: linear-gradient(180deg, #ffffff, #f3f6fc); }
+.product-media img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: contain; padding: .75rem; }
+.product-body { display: flex; flex-direction: column; align-items: flex-start; flex: 1; padding: 1.1rem 1.25rem 1.35rem; }
+.product-name { font-size: 1.15rem; font-weight: 800; line-height: 1.25; color: var(--text); }
+.product-desc { margin-top: .3rem; color: var(--muted); }
+.product-price { margin-top: .75rem; margin-bottom: .9rem; font-size: 2rem; font-weight: 900; line-height: 1; letter-spacing: -.02em; color: var(--blue-dark); }
+.product-deal { margin-bottom: .9rem; padding: .55rem .8rem; border-radius: 10px; background: linear-gradient(90deg, #fff1cc, #fff9e8); border: 1px solid #f0d58a; color: var(--amber-text); font-size: .85rem; }
+.product-deal strong { display: block; font-size: 1.15rem; font-weight: 900; color: var(--text); }
+.product-body .btn { width: 100%; max-width: none; margin-top: auto; font-size: 1rem; min-height: 54px; }
+.product-link { align-self: center; margin-top: .75rem; font-size: .9rem; font-weight: 700; color: var(--blue); text-underline-offset: 3px; }
+
+/* Destaque: fogão 6 bocas */
+.product-featured { background: linear-gradient(145deg, #ffffff 0%, #eef4ff 100%); border-color: #c3d3f3; }
+.product-featured .product-body { padding-top: 1.25rem; }
+.product-tag { margin-bottom: .5rem; padding: .2rem .6rem; font-size: .75rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--white); background: linear-gradient(90deg, #0e44a6, #0b3a8f); border-radius: 999px; }
+.product-featured .product-name { font-size: 1.4rem; }
+.product-featured .product-price { font-size: 2.5rem; }
+.product-highlights { display: grid; gap: .45rem; margin: 1rem 0 1.25rem; font-weight: 600; }
+.product-highlights span { color: var(--whats); font-weight: 900; }
+.product-featured .btn { margin-top: 0; }
+
+/* Detalhes expansíveis */
+.more { width: 100%; margin-top: 1rem; }
+.more-toggle { display: flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 1rem; font-size: .95rem; font-weight: 800; letter-spacing: .04em; color: var(--blue); background: var(--white); border: 1.5px solid #aab6cf; border-radius: 10px; cursor: pointer; list-style: none; transition: background-color .2s ease, border-color .2s ease; }
+.more-toggle::-webkit-details-marker { display: none; }
+.more-toggle:hover { background: var(--blue-soft); border-color: var(--blue); }
+.more-open, .more[open] .more-closed { display: none; }
+.more[open] .more-open { display: inline; }
+.more-body { padding-top: 1rem; }
+.more[open] .more-body { animation: fade-in .3s ease-out; }
+.specs > div { display: flex; justify-content: space-between; gap: 1rem; padding-block: .5rem; border-bottom: 1px solid var(--line); font-size: .95rem; }
+.specs dt { color: var(--muted); }
+.specs dd { margin: 0; text-align: right; font-weight: 700; }
+.more-title { margin-top: 1.1rem; font-size: 1rem; font-weight: 800; color: var(--blue-dark); }
+.about dt { margin-top: .85rem; font-weight: 800; }
+.about dd { margin: .15rem 0 0; font-size: .95rem; color: var(--muted); }
+
+/* Carrossel */
+.carousel { position: relative; padding: .75rem .75rem .5rem; }
+.carousel-track { display: flex; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; border-radius: 12px; background: var(--white); }
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-slide { flex: 0 0 100%; aspect-ratio: 4 / 3; scroll-snap-align: center; scroll-snap-stop: always; background: var(--white); }
+.carousel-slide img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.carousel-btn { position: absolute; top: calc(50% - 1.5rem); z-index: 2; display: grid; place-items: center; width: 44px; height: 44px; color: var(--blue-dark); background: var(--white); border: 1px solid var(--line); border-radius: 50%; box-shadow: 0 2px 8px rgba(7,42,105,.15); cursor: pointer; transition: transform .2s ease, opacity .2s ease; }
+.carousel-prev { left: 1.25rem; }
+.carousel-next { right: 1.25rem; }
+.carousel-btn:hover:not(:disabled) { transform: scale(1.06); }
+.carousel-btn:disabled { opacity: .35; cursor: default; }
+.carousel-dots { display: flex; justify-content: center; gap: .15rem; margin-top: .4rem; }
+.carousel-dot { display: grid; place-items: center; width: 28px; height: 28px; padding: 0; background: none; border: 0; cursor: pointer; }
+.carousel-dot::before { content: ""; width: 8px; height: 8px; border-radius: 4px; background: #b3bfd8; transition: width .25s ease, background-color .25s ease; }
+.carousel-dot[aria-current="true"]::before { width: 22px; background: var(--blue); }
+.carousel-track:focus-visible, .carousel-btn:focus-visible, .carousel-dot:focus-visible, .more-toggle:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+@media (hover: none) { .carousel-btn { display: none; } }
+
+@media (hover: hover) {
+  .product:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(7,42,105,.12); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .product, .carousel-btn, .carousel-dot::before, .more-toggle { transition: none; }
+  .product:hover, .carousel-btn:hover:not(:disabled) { transform: none; }
+  .more[open] .more-body { animation: none; }
+}
+@media (min-width: 640px) { .products { padding-block: 3.5rem; } .products-head h2 { font-size: 2rem; } }
+@media (min-width: 820px) {
+  .products-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .product-featured { grid-column: 1 / -1; flex-direction: row; align-items: flex-start; }
+  .product-featured .carousel { flex: 1.15; min-width: 0; padding: 1.25rem; }
+  .product-featured .product-body { flex: 1; padding: 1.75rem 1.75rem 1.75rem .5rem; }
 }
