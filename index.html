@@ -36,6 +36,7 @@
         <p class="hero-extra">Compre 3 gas: <strong>R$&nbsp;100 cada com entrega.</strong></p>
         <a class="btn btn-primary" href="https://wa.me/5513976033642" target="_blank" rel="noopener">PEDIR PELO WHATSAPP</a>
         <p class="hero-note">Atendimento rápido pelo WhatsApp</p>
+        <a class="hero-link" href="#pedido">Ou monte seu pedido aqui</a>
         </div>
         <figure class="hero-media">
           <picture>
@@ -87,6 +88,108 @@
       </div>
     </section>
 
+    <!-- PEDIDO -->
+    <section class="order" id="pedido" aria-labelledby="order-title">
+      <div class="container order-inner">
+        <div class="order-intro">
+          <h2 id="order-title">Faça seu pedido</h2>
+          <h3 class="order-subtitle">Pedido simples e transparente</h3>
+          <p>Atendimento local com entrega em São Vicente, Santos e Praia Grande.</p>
+          <p>Você informa seus dados, confere o pedido e finaliza diretamente pelo WhatsApp.</p>
+          <p class="order-privacy"><span aria-hidden="true">🔒</span> Seus dados são utilizados apenas para facilitar o atendimento do seu pedido.</p>
+          <aside class="notice" role="note">
+            <svg class="notice-icon" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false"><path d="M7 7h10l-2.5-2.5M17 17H7l2.5 2.5M17 7l-2.5 2.5M7 17l2.5-2.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <p class="notice-text"><strong>Importante:</strong> trabalhamos com troca de botijão vazio por um cheio. Não realizamos a venda do botijão/recipiente.</p>
+          </aside>
+        </div>
+
+        <form class="order-form" id="order-form" novalidate>
+          <div class="form-step">
+            <h3 class="form-step-title"><span class="form-step-num" aria-hidden="true">1</span>Endereço de entrega</h3>
+            <div class="field">
+              <label for="cep">CEP</label>
+              <input id="cep" name="cep" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="9" placeholder="00000-000" aria-describedby="cep-msg">
+              <p class="field-msg" id="cep-msg" aria-live="polite"></p>
+              <button type="button" class="link-btn" id="cep-retry" hidden>Tentar novamente</button>
+            </div>
+            <div class="address-block" id="address-block" hidden>
+              <div class="field">
+                <label for="street">Rua</label>
+                <input id="street" name="street" type="text" autocomplete="off" aria-describedby="street-error">
+                <p class="field-msg" id="street-error"></p>
+              </div>
+              <div class="field">
+                <label for="district">Bairro</label>
+                <input id="district" name="district" type="text" autocomplete="off" aria-describedby="district-error">
+                <p class="field-msg" id="district-error"></p>
+              </div>
+              <div class="field-row field-row-city">
+                <div class="field"><label for="city">Cidade</label><input id="city" type="text" readonly></div>
+                <div class="field"><label for="uf">UF</label><input id="uf" type="text" readonly></div>
+              </div>
+              <div class="field-row">
+                <div class="field">
+                  <label for="number">Número</label>
+                  <input id="number" name="number" type="text" autocomplete="off" maxlength="10" aria-describedby="number-error">
+                  <p class="field-msg" id="number-error"></p>
+                </div>
+                <div class="field">
+                  <label for="complement">Complemento <span class="optional">(opcional)</span></label>
+                  <input id="complement" name="complement" type="text" autocomplete="off" maxlength="60">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-step">
+            <h3 class="form-step-title"><span class="form-step-num" aria-hidden="true">2</span>Seu nome</h3>
+            <div class="field">
+              <label for="name" class="visually-hidden">Seu nome</label>
+              <input id="name" name="name" type="text" autocomplete="name" maxlength="80" placeholder="Seu nome" aria-describedby="name-error">
+              <p class="field-msg" id="name-error"></p>
+            </div>
+          </div>
+
+          <div class="form-step">
+            <h3 class="form-step-title" id="qty-label"><span class="form-step-num" aria-hidden="true">3</span>Quantos gás você precisa?</h3>
+            <div class="qty" role="group" aria-labelledby="qty-label">
+              <button type="button" class="qty-btn" id="qty-minus" aria-label="Diminuir quantidade">−</button>
+              <output class="qty-value" id="qty" aria-live="polite">1</output>
+              <button type="button" class="qty-btn" id="qty-plus" aria-label="Aumentar quantidade">+</button>
+            </div>
+            <p class="qty-hint" id="qty-hint"></p>
+          </div>
+
+          <div class="summary" id="summary">
+            <h3 class="summary-title">Resumo do pedido <span class="summary-badge" id="summary-badge" hidden>✓ Pedido conferido</span></h3>
+            <dl class="summary-list">
+              <div><dt>Nome</dt><dd id="s-name">—</dd></div>
+              <div><dt>Endereço</dt><dd id="s-address">—</dd></div>
+              <div><dt>Pedido</dt><dd id="s-order">1 gás</dd></div>
+              <div class="summary-total"><dt>Total</dt><dd id="s-total" aria-live="polite">Informe o CEP</dd></div>
+            </dl>
+            <p class="summary-note" id="s-note" hidden></p>
+          </div>
+
+          <ul class="trust">
+            <li><span aria-hidden="true">✓</span> Endereço confirmado</li>
+            <li><span aria-hidden="true">✓</span> Pedido conferido</li>
+            <li><span aria-hidden="true">✓</span> Valor informado antes do envio</li>
+            <li><span aria-hidden="true">✓</span> Atendimento pelo WhatsApp</li>
+          </ul>
+
+          <p class="form-error" id="form-error" role="alert" hidden></p>
+
+          <div class="order-bar">
+            <p class="order-bar-total"><span>Total</span> <strong id="bar-total">Informe o CEP</strong></p>
+            <button class="btn btn-primary order-submit" type="submit">CONFIRMAR PEDIDO PELO WHATSAPP</button>
+          </div>
+
+          <noscript><p class="form-error">Para usar o formulário, ative o JavaScript ou <a href="https://wa.me/5513976033642">chame direto no WhatsApp</a>.</p></noscript>
+        </form>
+      </div>
+    </section>
+
     <!-- 4. COMO FUNCIONA -->
     <section class="steps" id="como-funciona" aria-labelledby="steps-title">
       <div class="container">
@@ -120,12 +223,12 @@
             <p class="loyalty-reward">Vale 10% de desconto</p>
           </li>
           <li class="loyalty-step loyalty-step-free">
-            <p class="loyalty-qty"><span class="loyalty-num">10</span> gases</p>
+            <p class="loyalty-qty"><span class="loyalty-num">10</span> gas</p>
             <span class="loyalty-arrow" aria-hidden="true">↓</span>
             <p class="loyalty-reward">Próximo gás <strong>GRÁTIS</strong></p>
           </li>
         </ul>
-        <p class="loyalty-highlight">Comprou 10 gas? O próximo é GRÁTIS.</p>
+        <p class="loyalty-highlight">Comprou 10 gases? O próximo é GRÁTIS.</p>
         <a class="btn btn-secondary" href="https://wa.me/5513976033642?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20programa%20de%20fidelidade%20da%20Ultragaz%20Entregas%20Flash." target="_blank" rel="noopener">Saber mais pelo WhatsApp</a>
       </div>
     </section>
@@ -201,5 +304,6 @@
     <span>WhatsApp</span>
   </a>
 
+  <script src="script.js" defer></script>
 </body>
 </html>
