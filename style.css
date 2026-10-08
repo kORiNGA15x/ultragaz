@@ -520,3 +520,126 @@ a {
     transition: none;
   }
 }
+
+/* ==========================================================
+   UPGRADE VISUAL — refinamento (camada sobre a base acima)
+   ========================================================== */
+
+.container { max-width: 1080px; }
+
+/* ---------- Botões ---------- */
+.btn { transition: background-color .2s ease, transform .2s ease, box-shadow .2s ease; }
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0) scale(.98); }
+.btn:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+.btn-primary:hover { box-shadow: 0 8px 18px rgba(0,0,0,.28); }
+.btn-header, .btn-secondary { box-shadow: 0 2px 0 rgba(0,0,0,.18); }
+
+/* ---------- Header ---------- */
+.site-header { box-shadow: 0 1px 0 var(--line), 0 6px 18px rgba(7,42,105,.05); }
+.btn-header { line-height: 1.15; }
+
+/* ---------- Hero ---------- */
+.hero { padding-block: 2rem 2.5rem; }
+.hero-inner { display: grid; gap: 2rem; align-items: center; }
+.hero-copy { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+.hero-price { letter-spacing: -.03em; }
+.hero-extra { font-size: 1rem; }
+.hero-media { margin: 0; width: 100%; max-width: 360px; justify-self: center; }
+.hero-media img {
+  display: block; width: 100%; height: auto;
+  aspect-ratio: 9 / 8; object-fit: cover; object-position: top center;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.16);
+  box-shadow: 0 18px 40px rgba(0,0,0,.35);
+}
+
+/* ---------- Oferta ---------- */
+.offer-card-main {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-top: 6px solid var(--blue);
+  box-shadow: 0 12px 32px rgba(7,42,105,.08);
+}
+.offer-card-secondary { background: #f5f7fb; border: 1px solid var(--line); }
+.offer-price { font-size: clamp(3.25rem, 14vw, 4.5rem); }
+.offer-card-secondary .offer-price { font-size: 2.5rem; color: var(--blue-dark); }
+.offer-label { font-size: 1rem; letter-spacing: .12em; color: var(--blue-dark); }
+
+/* ---------- Troca de botijão ---------- */
+.notice { display: flex; align-items: flex-start; gap: .9rem; border-left-width: 6px; }
+.notice-icon { flex: none; margin-top: 2px; color: var(--amber-line); }
+
+/* ---------- Passos ---------- */
+.step { background: var(--white); }
+
+/* ---------- Área de entrega ---------- */
+.areas { background: #f5f7fb; }
+.areas-list { border-top: 0; display: grid; gap: .75rem; }
+.area {
+  padding: 1rem 1.1rem; background: var(--white);
+  border: 1px solid var(--line); border-left: 5px solid var(--blue);
+  border-radius: 10px;
+}
+
+/* ---------- Loja ---------- */
+.store { padding-block: 2.5rem; }
+.store-inner { display: grid; gap: 1.25rem; align-items: center; }
+.store-media { margin: 0; }
+.store-media img {
+  display: block; width: 100%; height: auto;
+  aspect-ratio: 4 / 3; object-fit: cover; object-position: 55% 50%;
+  border-radius: var(--radius);
+  box-shadow: 0 10px 28px rgba(7,42,105,.14);
+}
+.store-copy h2 { font-size: 1.5rem; font-weight: 800; line-height: 1.15; color: var(--blue-dark); }
+.store-copy address { margin-top: .6rem; font-style: normal; line-height: 1.6; color: var(--muted); }
+
+/* ---------- WhatsApp fixo (mobile) ---------- */
+.whats-float {
+  position: fixed; right: 1rem; bottom: calc(1rem + env(safe-area-inset-bottom, 0px)); z-index: 20;
+  display: inline-flex; align-items: center; gap: .5rem;
+  min-height: 48px; padding: 0 1.1rem 0 .9rem;
+  border-radius: 999px; background: var(--whats); color: var(--white);
+  font-weight: 800; font-size: .95rem; text-decoration: none;
+  box-shadow: 0 6px 18px rgba(0,0,0,.28);
+  transition: background-color .2s ease, transform .2s ease;
+}
+.whats-float:hover { background: var(--whats-hover); transform: translateY(-2px); }
+.whats-float:focus-visible { outline: 3px solid var(--yellow); outline-offset: 3px; }
+body { padding-bottom: 4.5rem; }
+
+@media (max-width: 359px) {
+  :root { --gutter: 1rem; }
+  .brand-name { font-size: 1.1rem; }
+  .brand-sub { font-size: .58rem; letter-spacing: .14em; }
+  .btn-header { padding: 0 .65rem; font-size: .78rem; max-width: 48%; }
+}
+
+@media (min-width: 640px) {
+  .whats-float { display: none; }
+  body { padding-bottom: 0; }
+  .areas-list { grid-template-columns: repeat(3, 1fr); }
+  .area { flex-direction: column; align-items: flex-start; padding: 1.25rem; }
+  .store-inner { grid-template-columns: 1.3fr 1fr; gap: 2.5rem; }
+  .store-media img { aspect-ratio: 16 / 11; }
+  .store { padding-block: 3.5rem; }
+}
+
+@media (min-width: 860px) {
+  .hero { padding-block: 4.5rem 5rem; }
+  .hero-inner { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 3.5rem; }
+  .hero-media { max-width: 460px; justify-self: end; }
+  .offer-grid { grid-template-columns: 1.5fr 1fr; }
+}
+
+/* ---------- Entrada sutil (uma vez, só no hero) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-copy, .hero-media { animation: rise .6s ease-out both; }
+  .hero-media { animation-delay: .12s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn, .whats-float { transition: none; }
+  .btn:hover, .whats-float:hover { transform: none; }
+}
