@@ -643,3 +643,48 @@ body { padding-bottom: 4.5rem; }
   .btn, .whats-float { transition: none; }
   .btn:hover, .whats-float:hover { transform: none; }
 }
+
+/* ==========================================================
+   NOVAS OFERTAS — "Compre 3" e Programa de Fidelidade
+   ========================================================== */
+
+/* ---------- Oferta: compre 3 gás ---------- */
+.promo {
+  display: grid; gap: 1.25rem; margin-top: 1rem; padding: 1.5rem 1.25rem;
+  background: var(--blue-dark); color: var(--white);
+  border-radius: 16px; border-bottom: 5px solid var(--yellow);
+}
+.promo-title { font-size: 1.4rem; font-weight: 900; line-height: 1.15; letter-spacing: -.01em; }
+.promo-text { margin-top: .6rem; color: #cfdcf7; font-size: 1.05rem; }
+.promo .btn-primary { margin-top: 1.25rem; font-size: 1.05rem; }
+.promo-price {
+  padding: 1rem 1.1rem; border-radius: var(--radius);
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16);
+}
+.promo-was { font-size: .95rem; color: #cfdcf7; }
+.promo-was del { margin-left: .25rem; text-decoration-thickness: 2px; }
+.promo-now { margin-top: .15rem; font-size: 3rem; font-weight: 900; line-height: 1; letter-spacing: -.03em; color: var(--yellow); }
+.promo-now span { font-size: 1.15rem; font-weight: 700; letter-spacing: 0; color: var(--white); }
+.promo-total { margin-top: .5rem; font-weight: 700; }
+
+/* ---------- Programa de fidelidade ---------- */
+.loyalty { padding-block: 2.5rem; background: var(--white); border-top: 1px solid var(--line); }
+.loyalty h2 { font-size: 1.6rem; font-weight: 800; line-height: 1.15; letter-spacing: -.01em; color: var(--blue-dark); }
+.loyalty-text { margin-top: .6rem; max-width: 52ch; font-size: 1.05rem; color: var(--muted); }
+.loyalty-flow { display: grid; gap: .9rem; margin-top: 1.5rem; }
+.loyalty-step { padding: 1.1rem 1.25rem; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); }
+.loyalty-step-free { background: var(--blue-soft); border: 2px solid var(--blue); }
+.loyalty-qty { display: flex; align-items: baseline; gap: .4rem; font-size: 1.2rem; font-weight: 800; }
+.loyalty-num { font-size: 3rem; line-height: 1; letter-spacing: -.03em; color: var(--blue); }
+.loyalty-arrow { display: block; margin-block: .2rem; font-size: 1.5rem; font-weight: 800; line-height: 1; color: var(--flame); }
+.loyalty-reward { font-size: 1.2rem; font-weight: 800; }
+.loyalty-reward strong { color: var(--flame); }
+.loyalty-highlight { margin-top: 1.5rem; font-size: 1.3rem; font-weight: 800; line-height: 1.25; color: var(--blue-dark); }
+.loyalty .btn-secondary { margin-top: 1.25rem; width: 100%; max-width: 420px; }
+
+@media (min-width: 640px) {
+  .promo { grid-template-columns: 1.4fr 1fr; align-items: center; gap: 2rem; padding: 2rem; }
+  .promo-title { font-size: 1.75rem; }
+  .loyalty { padding-block: 3.5rem; }
+  .loyalty-flow { grid-template-columns: 1fr 1fr; gap: 1rem; }
+}
