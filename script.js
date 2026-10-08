@@ -4,8 +4,7 @@
   'use strict';
 
   const WHATSAPP = '5513976033642';
-  const PRICE = { regular: 110, promo: 100, pg: 120 };
-  const PROMO_MIN = 3;   // promoção: a partir de 3 gases, R$ 100 cada
+  const PRICE = { regular: 110, pg: 120 };
   const MAX_QTY = 99;    // limite técnico do seletor
 
   const $ = (id) => document.getElementById(id);
@@ -51,17 +50,10 @@
     return 'other';
   }
 
-  // Retorna null (sem CEP), ou { unit, total, promo } / { total: null } (conflito Praia Grande + promoção)
+  // Retorna null (sem CEP) ou { unit, total }
   function quote() {
-    const q = state.qty;
-    if (state.area === 'regular') {
-      return q >= PROMO_MIN
-        ? { unit: PRICE.promo, total: PRICE.promo * q, promo: true }
-        : { unit: PRICE.regular, total: PRICE.regular * q };
-    }
-    if (state.area === 'pg') {
-      return q >= PROMO_MIN ? { total: null } : { unit: PRICE.pg, total: PRICE.pg * q };
-    }
+    if (state.area === 'regular') return { unit: PRICE.regular, total: PRICE.regular * state.qty };
+    if (state.area === 'pg') return { unit: PRICE.pg, total: PRICE.pg * state.qty };
     return null;
   }
 
@@ -109,25 +101,10 @@
     let note = '';
     let hint = 'Informe o CEP para ver o valor. São Vicente e Santos: R$ 110 · Praia Grande: R$ 120, com entrega.';
 
-    if (state.area === 'regular') {
+    if (q) {
       total = money(q.total);
-      if (q.promo) {
-        note = state.qty + ' × ' + money(q.unit) + ' (promoção de 3 gases)';
-        hint = 'Promoção aplicada: R$ 100 cada, com entrega.';
-      } else {
-        note = state.qty + ' × ' + money(q.unit);
-        hint = 'R$ 110 por gás, com entrega. A partir de 3 gases: R$ 100 cada.';
-      }
-    } else if (state.area === 'pg') {
-      if (q.total === null) {
-        total = 'A confirmar';
-        note = 'Promoção de 3 gases (R$ 100 cada) e Praia Grande (R$ 120 com entrega): o valor final será confirmado no atendimento pelo WhatsApp.';
-        hint = note;
-      } else {
-        total = money(q.total);
-        note = state.qty + ' × ' + money(q.unit);
-        hint = 'Praia Grande: R$ 120 por gás, com entrega.';
-      }
+      note = state.qty + ' × ' + money(q.unit);
+      hint = (state.area === 'pg' ? 'Praia Grande: R$ 120' : 'R$ 110') + ' por gás, com entrega.';
     }
 
     setText(ui.sName, f.name.value.trim() || '—');
@@ -243,9 +220,7 @@
 
   function buildMessage() {
     const q = quote();
-    const total = q.total === null
-      ? 'a confirmar no atendimento (Praia Grande, 3 ou mais gases)'
-      : money(q.total);
+    const total = money(q.total);
     const comp = f.complement.value.trim();
     return [
       'Olá! Quero fazer um pedido de gás.',
@@ -291,4 +266,46 @@
   }
 
   render();
+})();
+
+/* Carrossel de fotos dos produtos — rolagem nativa com scroll-snap (swipe no celular)
+   + setas, pontos e teclado. Independente do sistema de pedido de gás. */
+(() => {
+  'use strict';
+  document.querySelectorAll('[data-carousel]').forEach((root) => {
+    const track = root.querySelector('.carousel-track');
+    const count = root.querySelectorAll('.carousel-slide').length;
+    const dots = root.querySelectorAll('.carousel-dot');
+    const prev = root.querySelector('.carousel-prev');
+    const next = root.querySelector('.carousel-next');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let index = 0;
+    let ticking = false;
+
+    const go = (i) => {
+      const n = Math.max(0, Math.min(count - 1, i));
+      track.scrollTo({ left: n * track.clientWidth, behavior: reduce.matches ? 'auto' : 'smooth' });
+    };
+    const update = () => {
+      index = Math.round(track.scrollLeft / track.clientWidth) || 0;
+      dots.forEach((d, i) => d.setAttribute('aria-current', i === index ? 'true' : 'false'));
+      prev.disabled = index <= 0;
+      next.disabled = index >= count - 1;
+    };
+
+    track.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { ticking = false; update(); });
+    }, { passive: true });
+    prev.addEventListener('click', () => go(index - 1));
+    next.addEventListener('click', () => go(index + 1));
+    dots.forEach((d, i) => d.addEventListener('click', () => go(i)));
+    track.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(index - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(index + 1); }
+    });
+    window.addEventListener('resize', () => track.scrollTo({ left: index * track.clientWidth, behavior: 'auto' }));
+    update();
+  });
 })();
